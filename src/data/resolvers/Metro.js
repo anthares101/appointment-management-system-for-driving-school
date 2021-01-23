@@ -6,7 +6,6 @@ let momentz = require('moment-timezone');
 let { STUDENTS, APPOINTMENTS, DB, CARS, INSTRUCTORS } = APP_CONSTANTS;
 let {
   convertDateFieldsInStudentToHumanReadable,
-  convertDateFieldsInAppointmentToHumanReadable,
   convertDateFieldsInStudentInputToRethinkdbFormat,
   sanitizeFieldsInStudentInput,
   convertDateTimeToRDate,
@@ -194,7 +193,7 @@ module.exports = {
       let slots = [];
 
       // get the date from client with timezone, start from 8am, to 5pm
-      let dateMt = moment.utc(date, "L Z").utcOffset("-04:00");
+      let dateMt = moment.utc(date, "L Z").utcOffset("+01:00");
       dateMt.hour(8);
 
       for (let i = 0; i <= 36; i++) {
@@ -219,7 +218,7 @@ module.exports = {
         }
 
         // generate time text
-        let timeText = dateMt.utc().utcOffset("-04:00").format("LT");
+        let timeText = dateMt.utc().utcOffset("+01:00").format("LT");
         slots.push({
           time: timeText,
           isAvailable,
@@ -415,10 +414,10 @@ module.exports = {
       return item;
     },
     date: async (parent, params, { r }) => {
-      return moment(parent.startTime).utcOffset("-04:00").format("L");
+      return moment(parent.startTime).utcOffset("+01:00").format("L");
     },
     time: async (parent, params, { r }) => {
-      return moment(parent.startTime).utcOffset("-04:00").format("LT");
+      return moment(parent.startTime).utcOffset("+01:00").format("LT");
     }
 
 

@@ -10,7 +10,6 @@ async function run() {
 
   // create db
   try {
-    await r.dbDrop(db);
     await r.dbCreate(db);
 
   } catch (error) {

@@ -78,8 +78,8 @@ function convertDateFieldsInAppointmentToHumanReadable(item) {
   // the date will be off
   item = {
     ...item,
-    date: moment(item.startTime).utcOffset("-04:00").format("L"),
-    time: moment(item.startTime).utcOffset("-04:00").format("LT"),
+    date: moment(item.startTime).utcOffset("+01:00").format("L"),
+    time: moment(item.startTime).utcOffset("+01:00").format("LT"),
   };
   // console.log(item);
 

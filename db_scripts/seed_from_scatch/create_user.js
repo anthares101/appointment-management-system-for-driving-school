@@ -2,6 +2,9 @@ let fs = require("fs");
 const uuid = require('uuid/v4');
 let r = require("rethinkdbdash")({ servers: [{ host: "localhost", port: 28015 }] });
 let moment = require("moment");
+var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
+var hash = bcrypt.hashSync("demo", salt); // Change demo for your password
 
 //todo: read db name from command line argument
 let db = "Metro"
@@ -11,10 +14,11 @@ async function run() {
     // users
     await r.db(db).table("Users").delete();
     await r.db(db).table("Users").insert({
-        "password": "$2a$10$WB7SIpWfGtvF6ULO6B0MFe.SaZCBVuU9PgkVSz38oFNseG7m/fEEa", //"demo"
+        "password": hash,
         "username": "admin"
     })
 
+    /*
     // instructors
     await r.db(db).table("Instructors").delete();
     await r.db(db).table("Instructors").insert({
@@ -72,6 +76,7 @@ async function run() {
         "startTime": r.ISO8601("2019-07-10T12:00:00Z"),
         "studentId":  "6cd8788b-9f8d-4eb6-bcd9-ef769fe4d407"
     })
+    */
 
     process.exit();
 }

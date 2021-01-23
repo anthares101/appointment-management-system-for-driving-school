@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  db:
+    image: rethinkdb
+    volumes:
+      - data-rethinkdb:/data
+    ports:
+      - "28015:28015"
+      - "8080:8080"
+
+volumes:
+  data-rethinkdb:
