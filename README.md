@@ -2,14 +2,23 @@
 
 This is an open source appointment management system for driving schools. In this system, you can manage students, appointments, cars and instructors.
 
-## Demo
+## Deploy
 
-Url: https://metro.stevemu.com
+Install docker and docker-compose in your system and execute:
 
-Username: admin
+```
+docker-compose up
+```
 
-Password: demo
+## Creating a user
 
+To create a user you will need to enter the backend container using:
+
+```
+docker exec -it appointment-management-system-for-driving-school_backend_1 sh
+```
+
+And use the `db_scripts/create_user.js` script with `node ./db_scripts/create_user.js`. Remember to edit this file to change the password and user name before executing it.
 
 ## Tech Stack
 

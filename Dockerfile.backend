@@ -2,12 +2,12 @@ FROM mhart/alpine-node:10 as builder
 ENV NODE_ENV=production
 
 WORKDIR /usr/src/app
-COPY ./src .
-COPY ./db_scripts .
+COPY ./src ./src
+COPY ./db_scripts ./db_scripts
 COPY ./yarn.lock .
 COPY ./package.json .
 RUN yarn install --frozen-lockfile
 
 EXPOSE 4000
 
-CMD ["yarn", "start"]
+CMD node ./db_scripts/create_table.js; yarn start

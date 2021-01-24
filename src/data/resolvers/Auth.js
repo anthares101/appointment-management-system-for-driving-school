@@ -6,8 +6,6 @@ let {USERS, DB} = APP_CONSTANTS;
 const login = async (parent, { username, password }, { r, secret }) => {
 
   console.log('login attempt at ' + new Date());
-  console.log(username);
-  console.log(password);
   let users = await r.db(DB).table(USERS).filter({username});
 
   let user = users[0];

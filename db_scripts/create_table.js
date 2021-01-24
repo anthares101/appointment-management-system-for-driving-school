@@ -30,7 +30,7 @@ async function run() {
     await r.db(db).tableCreate("Users");
 
   } catch (error) {
-    console.log('Err creating tables, some tables may already exists');
+    console.log('Tables already exists');
   }
 
 
