@@ -195,7 +195,7 @@ export default class extends Component {
                       })
 
                     }}>{
-                        error ? "Error, try again" : "Save"
+                        error ? "Error, intentalo otra vez" : "Guardar"
                       }</a>
                   )
                 }}
