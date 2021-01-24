@@ -342,6 +342,17 @@ module.exports = {
       return item;
     }),
 
+    deleteAppointment: isAuthenticatedResolver.createResolver(async (_, { id }, { r }) => {
+      let item = await r.db(DB).table(APPOINTMENTS).get(id);
+      let result = await r.db(DB).table(APPOINTMENTS).get(id).delete();
+
+      if (result.deleted == 0) {
+        return null;
+      }
+
+      return item;
+    }),
+
     // car
 
     updateCar: isAuthenticatedResolver.createResolver(async (_, { carInput }, { r }) => {

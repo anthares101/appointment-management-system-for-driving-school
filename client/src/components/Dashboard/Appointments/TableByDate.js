@@ -92,12 +92,12 @@ export default class extends Component {
                 {
                   Header: "Fecha",
                   accessor: "date",
-                  width: 100,
+                  width: "auto",
                 },
                 {
                   Header: "Hora",
                   accessor: "time",
-                  width: 100,
+                  width: "auto",
                 },
                 {
                   id: "studentName",
@@ -106,7 +106,7 @@ export default class extends Component {
                     if (d.student) return d.student.name;
                     return "";
                   },
-                  width: 200,
+                  width: "auto",
                 },
                 {
                   id: "instructorName",
@@ -115,12 +115,12 @@ export default class extends Component {
                     if (d.instructor) return d.instructor.name;
                     return "";
                   },
-                  width: 100,
+                  width: "auto",
                 },
                 {
                   Header: "Tipo",
                   accessor: "classType",
-                  width: 100,
+                  width: "auto",
                 },
                 {
                   id: "carNo",
@@ -129,7 +129,7 @@ export default class extends Component {
                     if (d.car) return d.car.no;
                     return "";
                   },
-                  width: 200,
+                  width: "auto",
                 },
               ]}
               manual

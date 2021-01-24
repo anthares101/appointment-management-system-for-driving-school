@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { MdClose } from "react-icons/lib/md";
 import gql from "graphql-tag";
-import { ApolloConsumer } from "react-apollo";
+import { ApolloConsumer, Mutation } from "react-apollo";
 import { Loader, Dropdown, Search, Label } from "semantic-ui-react";
 import moment from "moment";
 import queryString from "../../../query-string";
@@ -10,8 +10,10 @@ import { SingleDatePicker } from "react-dates";
 import {
   CREATE_APPOINTMENT,
   UPDATE_APPOINTMENT,
+  DELETE_APPOINTMENT,
   GET_TIMESLOTS_BY_INSTRUCTOR,
   GET_INSTRUCTORS_AND_CARS,
+  GET_CURRENT_APPOINTMENTS_TABLE_BY_DATE_DATA,
 } from "./queries";
 
 function generateStudentText(student) {
@@ -500,16 +502,56 @@ export default class extends Component {
                   </main>
                 </div>
                 <footer>
-                  <a
-                    href=""
-                    className="cancel"
-                    onClick={(e) => {
-                      if (e) e.preventDefault();
-                      this.props.history.goBack();
-                    }}
-                  >
-                    Cancelar
-                  </a>
+                  <section className="left">
+                    <a
+                      href=""
+                      className="cancel"
+                      onClick={(e) => {
+                        if (e) e.preventDefault();
+                        this.props.history.goBack();
+                      }}
+                    >
+                      Cancelar
+                    </a>
+
+                    {/* delete button */}
+                    {this.state.id ? (
+                      <Mutation
+                        mutation={DELETE_APPOINTMENT}
+                        refetchQueries={[
+                          {
+                            query: GET_CURRENT_APPOINTMENTS_TABLE_BY_DATE_DATA,
+                          },
+                        ]}
+                      >
+                        {(deleteAppointment, { data, loading, error }) => {
+                          // console.log(data);
+                          if (loading) return <div>Saving...</div>;
+                          if (error) return <div>Error!</div>;
+
+                          // if mutation is successful, go back to previous page
+                          if (data) {
+                            this.props.history.goBack();
+                          }
+
+                          return (
+                            <a
+                              href=""
+                              className="delete"
+                              onClick={async (e) => {
+                                e.preventDefault();
+                                await deleteAppointment({
+                                  variables: { id: this.state.id },
+                                });
+                              }}
+                            >
+                              Borrar clase
+                            </a>
+                          );
+                        }}
+                      </Mutation>
+                    ) : null}
+                  </section>
 
                   {/*save button*/}
 

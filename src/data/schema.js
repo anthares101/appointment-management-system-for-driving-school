@@ -59,6 +59,7 @@ type Mutation {
 
   createAppointment(input: AppointmentInput): Appointment
   updateAppointment(input: AppointmentInput): Appointment
+  deleteAppointment(id: ID): Appointment
 
 }
 
