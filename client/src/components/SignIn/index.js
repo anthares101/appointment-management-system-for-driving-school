@@ -43,7 +43,7 @@ export default class extends Component {
                   <div className="form">
                     {this.state.error && <Label color={"red"} className={"error"}>{this.state.error}</Label>}
 
-                    <div className="form-title">Sign in</div>
+                    <div className="form-title">Inicia de sesión</div>
                     <label>Usuario</label>
                     <Input
                       name={"username"}
@@ -101,12 +101,12 @@ export default class extends Component {
                         console.log(err);
 
                         // show error
-                        this.setState({error: "Error logging in.", loading: false});
+                        this.setState({error: "Error iniciando sesión", loading: false});
                       }
 
 
                     }}>
-                      {this.state.loading ? <Loader active inline size={"tiny"} inverted/> : "Sign In"}
+                      {this.state.loading ? <Loader active inline size={"tiny"} inverted/> : "Iniciar Sesión"}
                     </Button>
 
                   </div>
