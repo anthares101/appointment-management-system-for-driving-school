@@ -47,14 +47,14 @@ export default class extends Component {
                     <label>Usuario</label>
                     <Input
                       name={"username"}
-                      placeholder='Username...'
+                      placeholder='Usuario...'
                       onChange={this.handleFieldChange}
                       value={this.state.username}
                     />
                     <label>Contraseña</label>
                     <Input
                       name={"password"}
-                      placeholder='Password...'
+                      placeholder='Contraseña...'
                       type={"password"}
                       onChange={this.handleFieldChange}
                       value={this.state.password}
