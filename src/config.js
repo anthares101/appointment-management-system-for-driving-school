@@ -11,7 +11,7 @@ const APP_CONSTANTS = {
 
 // rethinkdb config
 const defaultRethinkdbConfig = {
-    host: "localhost",
+    host: "db",
     port: 28015,
     authKey: ""
 };

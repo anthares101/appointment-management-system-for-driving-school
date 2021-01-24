@@ -1,6 +1,6 @@
 let fs = require("fs");
 const uuid = require('uuid/v4');
-let r = require("rethinkdbdash")({ servers: [{ host: "localhost", port: 28015 }] });
+let r = require("rethinkdbdash")({ servers: [{ host: "db", port: 28015 }] });
 let moment = require("moment");
 var bcrypt = require('bcryptjs');
 var salt = bcrypt.genSaltSync(10);

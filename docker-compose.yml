@@ -7,7 +7,24 @@ services:
       - data-rethinkdb:/data
     ports:
       - "28015:28015"
-      - "8080:8080"
+
+  backend:
+    image: driving-manager-backend
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    expose:
+      - "4000"
+    depends_on:
+      - db
+
+  frontend:
+    image: driving-manager-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:3000"
 
 volumes:
   data-rethinkdb:
