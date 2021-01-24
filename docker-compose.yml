@@ -5,16 +5,12 @@ services:
     image: rethinkdb
     volumes:
       - data-rethinkdb:/data
-    ports:
-      - "28015:28015"
 
   backend:
     image: driving-manager-backend
     build:
       context: .
       dockerfile: Dockerfile.backend
-    expose:
-      - "4000"
     depends_on:
       - db
 
