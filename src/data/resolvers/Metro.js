@@ -138,6 +138,13 @@ module.exports = {
       return items;
     }),
 
+    appointmentsByStudent: isAuthenticatedResolver.createResolver(async (_, { studentId }, { r }) => {
+      let items = await r.db(DB).table(APPOINTMENTS).filter({
+        studentId
+      });
+      return items;
+    }),
+
     appointmentById: isAuthenticatedResolver.createResolver(async (_, { id }, { r }) => {
       let item = await r.db(DB).table(APPOINTMENTS).get(id);
       return item;

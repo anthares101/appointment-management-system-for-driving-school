@@ -9,9 +9,18 @@ export const GET_APPOINTMENT = gql`
       date
       time
       classType
-      notes
       studentId
       note
+    }
+  }
+`;
+
+export const GET_APPOINTMENTS_BY_STUDENT = gql`
+  query($studentId: ID) {
+    appointmentsByStudent(studentId: $studentId) {
+      id
+      carId
+      instructorId
     }
   }
 `;

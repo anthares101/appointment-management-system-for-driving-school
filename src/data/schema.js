@@ -21,6 +21,7 @@ type Query {
 
   appointmentById(id: ID): Appointment
   appointmentsByDate(date: String): [Appointment]
+  appointmentsByStudent(studentId: ID): [Appointment]
   isAppointmentExist(instructorId: ID, time: String): Boolean
 }
 
