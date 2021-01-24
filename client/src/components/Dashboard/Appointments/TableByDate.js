@@ -1,14 +1,16 @@
-import React, {Component} from 'react';
-import {Input, Button} from 'semantic-ui-react';
-import moment from 'moment';
+import React, { Component } from "react";
+import { Input, Button } from "semantic-ui-react";
+import moment from "moment";
 import gql from "graphql-tag";
-import {Query, ApolloConsumer} from "react-apollo";
+import { Query, ApolloConsumer } from "react-apollo";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-import {caseInsensitiveFilter, calcPageSize} from '../Utils';
-import {GET_APPOINTMENTS_BY_DATE, GET_CURRENT_APPOINTMENTS_TABLE_BY_DATE_DATA} from './queries';
-
+import { caseInsensitiveFilter, calcPageSize } from "../Utils";
+import {
+  GET_APPOINTMENTS_BY_DATE,
+  GET_CURRENT_APPOINTMENTS_TABLE_BY_DATE_DATA,
+} from "./queries";
 
 export default class extends Component {
   constructor() {
@@ -16,15 +18,14 @@ export default class extends Component {
   }
 
   updateTableData = async () => {
-
     // console.log('here');
     // get the date
     let res = await this.client.query({
       query: gql`
         query {
-            currentDateSelection @client
+          currentDateSelection @client
         }
-      `
+      `,
     });
 
     let date = res.data.currentDateSelection;
@@ -34,10 +35,9 @@ export default class extends Component {
     res = await this.client.query({
       query: GET_APPOINTMENTS_BY_DATE,
       variables: {
-        date: date
+        date: date,
       },
-      fetchPolicy: "network-only"
-
+      fetchPolicy: "network-only",
     });
 
     // console.log(res);
@@ -46,18 +46,17 @@ export default class extends Component {
     this.client.writeData({
       data: {
         currentAppointmentsByDateTableData: res.data.appointmentsByDate,
-        isAppointmentByDateTableLoading: false
-      }
+        isAppointmentByDateTableLoading: false,
+      },
     });
-
   };
 
   render() {
-    let {rowClickHandler} = this.props;
+    let { rowClickHandler } = this.props;
 
     return (
       <Query query={GET_CURRENT_APPOINTMENTS_TABLE_BY_DATE_DATA}>
-        {({data, client}) => {
+        {({ data, client }) => {
           this.client = client;
 
           // when it is loading, fetch and update the table
@@ -71,62 +70,67 @@ export default class extends Component {
 
           let {
             currentAppointmentsByDateTableData,
-            isAppointmentByDateTableLoading
+            isAppointmentByDateTableLoading,
           } = data;
 
           return (
             <ReactTable
+              rowsText="filas"
+              nextText="Siguiente"
+              previousText="Anterior"
+              pageText="Página"
+              ofText="de"
               getTdProps={(state, rowInfo, column, instance) => {
                 return {
                   onClick: (e, handleOriginal) => {
                     let item = rowInfo.original;
                     rowClickHandler(item);
-                  }
+                  },
                 };
               }}
               columns={[
                 {
-                  Header: "Date",
+                  Header: "Fecha",
                   accessor: "date",
-                  width: 100
+                  width: 100,
                 },
                 {
-                  Header: "Time",
+                  Header: "Hora",
                   accessor: "time",
-                  width: 100
+                  width: 100,
                 },
                 {
                   id: "studentName",
-                  Header: "Student",
+                  Header: "Estudiante",
                   accessor: (d) => {
                     if (d.student) return d.student.name;
                     return "";
                   },
-                  width: 200
+                  width: 200,
                 },
                 {
                   id: "instructorName",
-                  Header: "Instructor",
+                  Header: "Profesor",
                   accessor: (d) => {
                     if (d.instructor) return d.instructor.name;
                     return "";
                   },
-                  width: 100
+                  width: 100,
                 },
                 {
-                  Header: "Type",
+                  Header: "Tipo",
                   accessor: "classType",
-                  width: 100
+                  width: 100,
                 },
                 {
                   id: "carNo",
-                  Header: "Car",
+                  Header: "Vehículo",
                   accessor: (d) => {
                     if (d.car) return d.car.no;
                     return "";
                   },
-                  width: 200
-                }
+                  width: 200,
+                },
               ]}
               manual
               data={currentAppointmentsByDateTableData}
@@ -136,7 +140,7 @@ export default class extends Component {
               sortable={false}
               className="-striped -highlight main-table"
             />
-          )
+          );
         }}
       </Query>
     );

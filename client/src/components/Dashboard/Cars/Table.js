@@ -1,16 +1,10 @@
-import React, { Component } from 'react';
-import { Input, Button } from 'semantic-ui-react';
-import moment from 'moment';
-
-// graphql
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
+import React, { Component } from "react";
 
 // table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-import { caseInsensitiveFilter, calcPageSize } from '../Utils';
+import { caseInsensitiveFilter, calcPageSize } from "../Utils";
 
 export default class extends Component {
   constructor() {
@@ -19,8 +13,8 @@ export default class extends Component {
     let pageSize = calcPageSize();
 
     this.state = {
-      pageSize
-    }
+      pageSize,
+    };
   }
 
   componentDidMount() {
@@ -37,22 +31,26 @@ export default class extends Component {
 
     return (
       <ReactTable
+        rowsText="filas"
+        nextText="Siguiente"
+        previousText="Anterior"
+        pageText="Página"
+        ofText="de"
         getTdProps={(state, rowInfo, column, instance) => {
           return {
             onClick: (e, handleOriginal) => {
               let car = rowInfo.original;
               rowClickHandler(car);
-            }
+            },
           };
         }}
         columns={[
           {
-            Header: "Car No.",
+            Header: "Nombre",
             accessor: "no",
             filterMethod: caseInsensitiveFilter,
-            width: "100%"
+            width: "100%",
           },
-
         ]}
         data={cars}
         filterable
@@ -63,4 +61,3 @@ export default class extends Component {
     );
   }
 }
-

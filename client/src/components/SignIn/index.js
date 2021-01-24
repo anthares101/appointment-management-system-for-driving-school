@@ -33,10 +33,10 @@ export default class extends Component {
             <div className="signin">
               <div className="signin-wrapper">
                 <div className="title">
-                  Metro Driving School
+                  Metro School
                 </div>
                 <div className="subtitle">
-                  Managing appointments, the easy way
+                  Gestión de autoescuelas, la forma sencilla
                 </div>
                 <div className="box">
                   <div className="photo"></div>
@@ -44,14 +44,14 @@ export default class extends Component {
                     {this.state.error && <Label color={"red"} className={"error"}>{this.state.error}</Label>}
 
                     <div className="form-title">Sign in</div>
-                    <label>Username</label>
+                    <label>Usuario</label>
                     <Input
                       name={"username"}
                       placeholder='Username...'
                       onChange={this.handleFieldChange}
                       value={this.state.username}
                     />
-                    <label>Password</label>
+                    <label>Contraseña</label>
                     <Input
                       name={"password"}
                       placeholder='Password...'

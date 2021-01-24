@@ -30,7 +30,7 @@ export default class extends Component {
       >
         {({ loading, error, data }) => {
           if (loading) {
-            return <div>Loading...</div>
+            return <div>Cargando...</div>
           }
           if (error) {
             return <div>Error: {error.message}</div>;
@@ -112,7 +112,7 @@ class StudentEdit extends Component {
           return (<div className="modal">
             <div className="edit-modal-wrapper">
               <header>
-                <h1>Edit Student</h1>
+                <h1>Editar alumno</h1>
                 <div><a href="" onClick={(e) => {
                   if (e) e.preventDefault();
                   this.props.history.goBack()
@@ -124,7 +124,7 @@ class StudentEdit extends Component {
                     autoComplete={"off"}
                   >
                     <Form.Input
-                      label='Student name'
+                      label='Nombre alumno'
                       control='input'
                       name="name"
                       value={this.state.name}
@@ -133,44 +133,44 @@ class StudentEdit extends Component {
                       error={this.state.nameError}
                     />
                     <Form.Group>
-                      <Form.Input label="First Day (mm/dd/yyyy)" width={5} name="firstDay" value={this.state.firstDay}
+                      <Form.Input label="Primer día (mm/dd/aaaa)" width={5} name="firstDay" value={this.state.firstDay}
                         onChange={this.handleFieldChange} autoComplete="first day"
                         error={this.state.firstDayError}
                       />
-                      <Form.Input label="Gender (M/F)" width={5} name="gender" value={this.state.gender}
+                      <Form.Input label="Género (M/F)" width={5} name="gender" value={this.state.gender}
                         onChange={this.handleFieldChange} autoComplete="gender" />
-                      <Form.Input label="Dob (mm/dd/yyyy)" width={5} name="dob" value={this.state.dob}
+                      <Form.Input label="Fecha nacimiento (mm/dd/aaaa)" width={5} name="dob" value={this.state.dob}
                         onChange={this.handleFieldChange} autoComplete="dob"
                         error={this.state.dobError}
                       />
                     </Form.Group>
                     <Form.Group>
-                      <Form.Input label="Learner Permit No." width={5} name="learnerPermitNo"
+                      <Form.Input label="¿Carnet de conducir?" width={5} name="learnerPermitNo"
                         value={this.state.learnerPermitNo} onChange={this.handleFieldChange}
                         autoComplete="learnerPermitNo" />
-                      <Form.Input label="Exp (mm/dd/yyyy)" width={5} name="learnerPermitExp"
+                      <Form.Input label="Último día (mm/dd/yyyy)" width={5} name="learnerPermitExp"
                         value={this.state.learnerPermitExp} onChange={this.handleFieldChange}
                         autoComplete="learnerPermitExp"
                         error={this.state.learnerPermitExpError}
                       />
-                      <Form.Input label="Phone" width={5} name="phone" value={this.state.phone}
+                      <Form.Input label="Teléfono" width={5} name="phone" value={this.state.phone}
                         onChange={this.handleFieldChange} autoComplete="phone" />
                     </Form.Group>
                     <Form.Group>
-                      <Form.Input label="Address" width={10} name="address" value={this.state.address}
+                      <Form.Input label="Dirección" width={10} name="address" value={this.state.address}
                         onChange={this.handleFieldChange} autoComplete="new-user-address" />
-                      <Form.Input label="Zip" width={5} name="zip" value={this.state.zip}
+                      <Form.Input label="Código postal" width={5} name="zip" value={this.state.zip}
                         onChange={this.handleFieldChange} autoComplete="zip" />
                     </Form.Group>
                     <Form.Field>
-                      <Checkbox label='Discontinue' name="discontinue" checked={this.state.discontinue}
+                      <Checkbox label='Ex-alumno' name="discontinue" checked={this.state.discontinue}
                         onChange={() => {
                           // toggle discontinue
                           this.setState({ discontinue: !this.state.discontinue })
                         }} />
                     </Form.Field>
                     <Form.Field>
-                      <Checkbox label='Call' name="call" checked={this.state.call} onChange={this.handleFieldChange}
+                      <Checkbox label='Llamar' name="call" checked={this.state.call} onChange={this.handleFieldChange}
                         onChange={() => {
                           // toggle discontinue
                           this.setState({ call: !this.state.call })
@@ -181,7 +181,7 @@ class StudentEdit extends Component {
                 <aside>
                   <Form>
                     <Form.TextArea
-                      label='Notes'
+                      label='Notas'
                       name="notes"
                       value={this.state.notes}
                       onChange={this.handleFieldChange}
@@ -195,7 +195,7 @@ class StudentEdit extends Component {
                   <a href="" className="cancel" onClick={(e) => {
                     if (e) e.preventDefault();
                     this.props.history.goBack();
-                  }}>Cancel</a>
+                  }}>Cancelar</a>
 
                   {/* delete student button */}
                   <Mutation
@@ -203,7 +203,7 @@ class StudentEdit extends Component {
                   >
                     {(deleteStudent, { data, loading, error }) => {
                       // console.log(data);
-                      if (loading) return <div>Saving...</div>
+                      if (loading) return <div>Guardando...</div>
                       if (error) return <div>Error!</div>
 
                       // if mutation is successful, go back to previous page
@@ -220,7 +220,7 @@ class StudentEdit extends Component {
                           // refetch student table data
                           await this.refetchStudentTableData(client);
 
-                        }}>Delete Student</a>
+                        }}>Borrar alumno</a>
                       )
                     }}
                   </Mutation>
@@ -235,7 +235,7 @@ class StudentEdit extends Component {
                 >
                   {(updateStudent, { data, loading, error }) => {
                     // console.log(data);
-                    if (loading || error) return <a href="#" className="save">Saving...</a>
+                    if (loading || error) return <a href="#" className="save">Guardando...</a>
 
                     // if mutation is successful, go back to previous page
                     if (data) {
@@ -263,7 +263,7 @@ class StudentEdit extends Component {
                         // refetch student table data
                         await this.refetchStudentTableData(client);
 
-                      }}>Save</a>
+                      }}>Guardar</a>
                     )
                   }}
                 </Mutation>

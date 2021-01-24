@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {Input, Button, Loader, Dimmer} from 'semantic-ui-react';
 import gql from "graphql-tag";
 import {Query} from "react-apollo";
 import 'react-dates/lib/css/_datepicker.css';
 import queryString from '../../../query-string';
-import moment from 'moment';
 
 import './appointment.css';
 
@@ -40,7 +38,7 @@ export default class extends Component {
             <NewButton
               {...this.props}
               route={"/new-appointment"}
-              text="New Appointment"
+              text="Nueva clase"
             />
             <div className="filter">
               <DatePicker/>

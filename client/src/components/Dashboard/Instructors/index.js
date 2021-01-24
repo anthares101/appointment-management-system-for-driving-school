@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-import { Input, Button, Loader, Dimmer } from 'semantic-ui-react';
-import gql from "graphql-tag";
+import React, { Component } from "react";
+import { Loader, Dimmer } from "semantic-ui-react";
 import { Query } from "react-apollo";
 
-import NewButton from '../lib/NewButton';
-import Table from './Table';
+import NewButton from "../lib/NewButton";
+import Table from "./Table";
 
-import {GET_INSTRUCTOR, GET_INSTRUCTORS, CREATE_INSTRUCTOR, DELETE_INSTRUCTOR, UPDATE_INSTRUCTOR} from './queries';
+import { GET_INSTRUCTORS } from "./queries";
 
 export default class extends Component {
-
   constructor() {
     super();
     this.state = {
       data: [],
       pages: null,
-      loading: true
+      loading: true,
     };
   }
 
@@ -29,20 +27,23 @@ export default class extends Component {
           // return <div>Under construction</div>
 
           if (loading) {
-            return <div className="loading">
-              <Loader size='huge' active>Loading</Loader>
-            </div>
+            return (
+              <div className="loading">
+                <Loader size="huge" active>
+                  Cargando
+                </Loader>
+              </div>
+            );
           }
 
           let { allInstructors } = data;
 
           return (
             <div className="dashboard-main-wrapper">
-
               <NewButton
                 {...this.props}
                 route={"/new-instructor"}
-                text="New Instructor"
+                text="Nuevo profesor"
               />
 
               <Table
@@ -54,9 +55,8 @@ export default class extends Component {
                 }}
               />
             </div>
-          )
+          );
         }}
-
       </Query>
     );
   }

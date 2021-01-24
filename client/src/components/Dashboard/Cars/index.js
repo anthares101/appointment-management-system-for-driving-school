@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import { Input, Button, Loader, Dimmer } from 'semantic-ui-react';
-import gql from "graphql-tag";
+import React, { Component } from "react";
+import { Loader } from "semantic-ui-react";
 import { Query } from "react-apollo";
 
-import NewButton from '../lib/NewButton';
-import Table from './Table';
-import {GET_CAR, GET_CARS, DELETE_CAR, UPDATE_CAR} from './queries';
-
+import NewButton from "../lib/NewButton";
+import Table from "./Table";
+import { GET_CARS } from "./queries";
 
 export default class extends Component {
   constructor() {
@@ -14,7 +12,7 @@ export default class extends Component {
     this.state = {
       data: [],
       pages: null,
-      loading: true
+      loading: true,
     };
   }
 
@@ -28,20 +26,23 @@ export default class extends Component {
           // return <div>Under construction</div>
 
           if (loading) {
-            return <div className="loading">
-              <Loader size='huge' active>Loading</Loader>
-            </div>
+            return (
+              <div className="loading">
+                <Loader size="huge" active>
+                  Cargando
+                </Loader>
+              </div>
+            );
           }
 
           let { cars } = data;
 
           return (
             <div className="dashboard-main-wrapper">
-
               <NewButton
                 {...this.props}
                 route={"/new-car"}
-                text="New Car"
+                text="Nuevo vehículo"
               />
 
               <Table
@@ -52,11 +53,9 @@ export default class extends Component {
                   this.props.history.push("/cars/" + id);
                 }}
               />
-              
             </div>
-          )
+          );
         }}
-
       </Query>
     );
   }

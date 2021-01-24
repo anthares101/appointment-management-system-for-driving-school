@@ -17,7 +17,7 @@ export default class extends Component {
         <NewButton
           {...this.props}
           route={`/new-student`}
-          text="New Student"
+          text="Nuevo alumno"
         />
         <Table
           rowClickHandler={(item) => {
