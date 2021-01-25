@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   db:
-    image: rethinkdb
+    image: rethinkdb:2.4.1
     volumes:
       - data-rethinkdb:/data
 
