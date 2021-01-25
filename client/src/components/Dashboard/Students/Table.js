@@ -64,6 +64,7 @@ export default class extends Component {
     let res = await this.client.query({
       query: GET_STUDENTS,
       variables: queryVars,
+      fetchPolicy: "network-only",
     });
 
     // write current page data to the global store
