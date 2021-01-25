@@ -1,4 +1,6 @@
-# Driving school appointment management system [Spanish version]
+<img alt="GitHub" src="https://img.shields.io/badge/version-v1.0.0-blue"> <img alt="GitHub" src="https://img.shields.io/github/license/anthares101/appointment-management-system-for-driving-school">
+
+# Metro School [Spanish version]
 
 This is an open source appointment management system for driving schools. In this system, you can manage students, appointments, cars and instructors.
 
