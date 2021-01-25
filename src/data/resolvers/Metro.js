@@ -203,7 +203,7 @@ module.exports = {
       let dateMt = moment.utc(date, "L Z").utcOffset("+01:00");
       dateMt.hour(8);
 
-      for (let i = 0; i <= 36; i++) {
+      for (let i = 0; i <= 53; i++) {
 
         // get appointments at this time
         let rDate = r.ISO8601(dateMt.utc().format()); // make an copy to preserve the non-utc date in the original moment

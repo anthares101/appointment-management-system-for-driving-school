@@ -141,7 +141,7 @@ export default class extends Component {
     now.hour(8);
     now.minute(0);
     let lis = [];
-    for (let i = 0; i < 37; i++) {
+    for (let i = 0; i < 54; i++) {
       let li = (
         <li className={"unavailable"} key={i}>
           {now.format("LT")}
