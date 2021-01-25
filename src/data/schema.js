@@ -80,6 +80,10 @@ type Student {
   zip: String
 }
 
+extend type Student {
+  lessons: Int
+}
+
 input StudentInput {
   address: String
   call: Boolean

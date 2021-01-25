@@ -39,6 +39,7 @@ export const GET_STUDENTS = gql`
         notes
         gender
         zip
+        lessons
     }
     page
     pageSize

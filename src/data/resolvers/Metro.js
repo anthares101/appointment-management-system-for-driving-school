@@ -46,6 +46,14 @@ module.exports = {
       // return the portion of items for page and pageSize
       items = items.slice(pageSize * page, pageSize * page + pageSize);
 
+      // Append the lessons number to every student returned
+      items = await Promise.all(items.map(async (item) => {
+        const studentAppointments = await r.db(DB).table(APPOINTMENTS).filter({
+          studentId: item.id
+        });
+        return Object.assign(item, {lessons: studentAppointments.length});
+      }))
+
       let result = {
         students: items,
         page,

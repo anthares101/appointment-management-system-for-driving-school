@@ -6,7 +6,6 @@ import gql from "graphql-tag";
 
 import { calcPageSize } from "../Utils";
 import { GET_STUDENTS } from "./queries";
-import { GET_APPOINTMENTS_BY_STUDENT } from "../Appointments/queries";
 
 const GET_CURRENT_STUDENT_TABLE_DATA = gql`
   query {
@@ -19,6 +18,7 @@ const GET_CURRENT_STUDENT_TABLE_DATA = gql`
         name
         notes
         gender
+        lessons
       }
     }
     isCurrentStudentTableDataLoading @client
@@ -30,8 +30,7 @@ export default class extends Component {
     super();
 
     this.state = {
-      pageSize: calcPageSize(),
-      lessonsCounter: [],
+      pageSize: calcPageSize()
     };
   }
 
@@ -42,26 +41,6 @@ export default class extends Component {
   handleResize() {
     this.setState({ pageSize: calcPageSize() });
   }
-
-  updateLessonsCounter = async (students) => {
-    let lessonsCounter = [];
-
-    for (let index = 0; index < students.length; index++) {
-      const appointments = await this.client.query({
-        query: GET_APPOINTMENTS_BY_STUDENT,
-        variables: {
-          studentId: students[index].id,
-        },
-      });
-
-      lessonsCounter.push({
-        id: students[index].id,
-        lessons: Object.keys(appointments.data.appointmentsByStudent).length,
-      });
-    }
-
-    this.setState({ lessonsCounter: lessonsCounter });
-  };
 
   fetchData = async (state, instance) => {
     // show loading
@@ -86,8 +65,6 @@ export default class extends Component {
       query: GET_STUDENTS,
       variables: queryVars,
     });
-
-    await this.updateLessonsCounter(res.data.students.students);
 
     // write current page data to the global store
 
@@ -149,16 +126,8 @@ export default class extends Component {
                   width: "auto",
                 },
                 {
-                  id: "numberOfLessons",
                   Header: "Clases",
-                  accessor: (d) => {
-                    const counters = this.state.lessonsCounter.filter(
-                      (counter) => d.id == counter.id
-                    );
-
-                    if (counters.length > 0) return counters[0].lessons;
-                    else return "";
-                  },
+                  accessor: "lessons",
                   width: "auto",
                 },
                 {
