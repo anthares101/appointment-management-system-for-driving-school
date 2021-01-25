@@ -29,6 +29,6 @@ And use the `db_scripts/create_user.js` script with `node ./db_scripts/create_us
 + GraphQL
 + Rethinkdb
 
-## Todo
+## Note
 
 The server use moment.utcOffset("+01:00") to return result of CET time zone result. This won't work for people not in CET zone. Possible solution: store timezone in user object.
