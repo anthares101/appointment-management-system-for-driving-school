@@ -1,4 +1,4 @@
-# Driving school appointment management system
+# Driving school appointment management system [Spanish version]
 
 This is an open source appointment management system for driving schools. In this system, you can manage students, appointments, cars and instructors.
 
