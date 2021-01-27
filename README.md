@@ -14,13 +14,13 @@ docker-compose up
 
 ## Creating a user
 
-To create a user you will need to enter the backend container using:
+To create a user you will need to execute this:
 
 ```
-docker exec -it appointment-management-system-for-driving-school_backend_1 sh
+docker-compose run --rm backend node ./db_scripts/create_user.js
 ```
 
-And use the `db_scripts/create_user.js` script with `node ./db_scripts/create_user.js`. Remember to edit this file to change the password and user name before executing it.
+Remember to edit `create_user.js` file to change the password and user name before executing it.
 
 ## Tech Stack
 
