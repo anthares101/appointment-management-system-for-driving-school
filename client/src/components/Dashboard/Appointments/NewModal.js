@@ -434,6 +434,8 @@ export default class extends Component {
                     {/*/>*/}
                     <SingleDatePicker
                       date={mDate} // momentPropTypes.momentObj or null
+                      isOutsideRange={() => false}
+                      readOnly={true}
                       onDateChange={(mDate) =>
                         this.setState({ date: mDate.format("L") })
                       } // PropTypes.func.isRequired
