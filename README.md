@@ -1,4 +1,4 @@
-<img alt="GitHub" src="https://img.shields.io/badge/version-v1.0.0-blue"> <img alt="GitHub" src="https://img.shields.io/github/license/anthares101/appointment-management-system-for-driving-school">
+<img alt="GitHub" src="https://img.shields.io/badge/version-v1.0.1-blue"> <img alt="GitHub" src="https://img.shields.io/github/license/anthares101/appointment-management-system-for-driving-school">
 
 # Metro School [Spanish version]
 
