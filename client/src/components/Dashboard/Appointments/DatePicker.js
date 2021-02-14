@@ -66,6 +66,7 @@ export default class extends Component {
             <SingleDatePicker
               date={md}
               isOutsideRange={() => false}
+              readOnly={true}
               onDateChange={date => {
                 if (!date) return;
 
